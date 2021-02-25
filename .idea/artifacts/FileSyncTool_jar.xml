@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="FileSyncTool:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FileSyncTool_jar</output-path>
+    <root id="archive" name="FileSyncTool.jar">
+      <element id="module-output" name="FileSyncTool" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../JavaLib/fastjson-1.2.75.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
