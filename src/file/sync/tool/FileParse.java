@@ -77,7 +77,7 @@ public class FileParse {
 			return;
 		}
 		Logger.info("开始扫描目录 " + dirName);
-		fileMap.put(dirName, DIR);
+		fileMap.put(dirName.replace('\\', '/'), DIR);
 		File[] list = dir.listFiles();
 		if (list == null) {
 			return;
@@ -140,7 +140,7 @@ public class FileParse {
 		} catch (NoSuchAlgorithmException | IOException e) {
 			Logger.warn(e);
 		}
-		fileMap.put(fileName, sha256);
+		fileMap.put(fileName.replace('\\', '/'), sha256);
 		Logger.info("分析结果 " + sha256);
 	}
 

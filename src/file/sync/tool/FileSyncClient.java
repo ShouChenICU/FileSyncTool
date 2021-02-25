@@ -40,8 +40,8 @@ public class FileSyncClient {
 	private NetTransfer netTransfer;
 	private Socket socket;
 	private int mode;
-	private Map<String, String> clientFileMap;
-	private Map<String, String> serverFileMap;
+	private HashMap<String, String> clientFileMap;
+	private HashMap<String, String> serverFileMap;
 	private List<Map.Entry<String, String>> fileAddList;
 	private List<Map.Entry<String, String>> fileDelList;
 
@@ -141,21 +141,19 @@ public class FileSyncClient {
 			Logger.error(e);
 			stop();
 		}
-		Logger.info("开始差量分析");
+		Logger.info("开始差量分析...");
 		int addCount = 0;
 		int delCount = 0;
 		int changeCount = 0;
 		int noChangeCount = 0;
 		if (this.mode == DOWNLOAD_MODE) {
 			for (Map.Entry<String, String> c : clientFileMap.entrySet()) {
-				Logger.out("分析 " + c.getKey());
 				if (serverFileMap.get(c.getKey()) == null) {
 					fileDelList.add(c);
 					delCount++;
 				}
 			}
 			for (Map.Entry<String, String> s : serverFileMap.entrySet()) {
-				Logger.out("分析 " + s.getKey());
 				String v = clientFileMap.get(s.getKey());
 				if (v == null) {
 					fileAddList.add(s);
@@ -170,14 +168,12 @@ public class FileSyncClient {
 			}
 		} else if (this.mode == UPLOAD_MODE) {
 			for (Map.Entry<String, String> s : serverFileMap.entrySet()) {
-				Logger.out("分析 " + s.getKey());
 				if (clientFileMap.get(s.getKey()) == null) {
 					fileDelList.add(s);
 					delCount++;
 				}
 			}
 			for (Map.Entry<String, String> c : clientFileMap.entrySet()) {
-				Logger.out("分析 " + c.getKey());
 				String v = serverFileMap.get(c.getKey());
 				if (v == null) {
 					fileAddList.add(c);
